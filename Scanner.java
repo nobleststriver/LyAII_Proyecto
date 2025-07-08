@@ -5,14 +5,14 @@
 import javax.swing.JOptionPane;
 
 public class Scanner {
-    
+    /*En esta parte solo se modifico la parte de los arreglos se añadio las palabras reservadas y operadores */
 //DECLARACIONES
     private int lineaNo, k;
     private final String[] tokens;
     private String tipoToken;
     private String token;
-    private final String[] reservadas = {"if", "then", "else", "begin", "print", "end", "int", "float"};
-    private final String[] operadores = {"==", ":=", "+"};
+    private final String[] reservadas = {"if", "then", "else", "begin", "print", "end", "int", "float", "double", "long"};
+    private final String[] operadores = {"==", ":=", "+", "-", "*", "/"};
     private final String delimitador = ";";
 
 

@@ -1,0 +1,9 @@
+x double ;
+y float ;
+
+if x == y then
+	begin print x / y
+	end
+else
+	begin print x - y
+	end

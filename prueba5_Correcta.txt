@@ -1,0 +1,13 @@
+x double ;
+y float ;
+z long ;
+
+x := y * z ;
+if x == y then
+    begin
+        print x / z ;
+    end
+else
+    begin
+        print y - z ;
+    end

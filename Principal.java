@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -39,7 +38,6 @@ public class Principal extends JFrame {
         titulo.setFont(new Font("Segoe UI", Font.BOLD, 20));
         panelSuperior.add(titulo);
         
-        
         JPanel panelCentral = new JPanel(new BorderLayout());
         panelCentral.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
@@ -54,25 +52,14 @@ public class Principal extends JFrame {
         scroll.setBorder(BorderFactory.createEmptyBorder());
         panelCentral.add(scroll, BorderLayout.CENTER);
         
-        
         JPanel panelInferior = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
         panelInferior.setBackground(new Color(230, 230, 230));
         
         btnCargar = new JButton("Cargar Archivo");
-        btnCargar.setPreferredSize(new Dimension(150, 35));
-        btnCargar.setBackground(new Color(50, 150, 250));
-        btnCargar.setForeground(Color.WHITE);
-        btnCargar.setFocusPainted(false);
-        btnCargar.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        btnCargar.addActionListener(this::cargarArchivo);
-        
         btnAnalizar = new JButton("Analizar Código");
-        btnAnalizar.setPreferredSize(new Dimension(150, 35));
-        btnAnalizar.setBackground(new Color(80, 180, 80));
-        btnAnalizar.setForeground(Color.WHITE);
-        btnAnalizar.setFocusPainted(false);
-        btnAnalizar.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        btnAnalizar.addActionListener(this::analizarCodigo);
+        
+        // Configurar botones según el sistema operativo
+        configurarBotones();
         
         lblEstado = new JLabel("Esperando archivo...");
         lblEstado.setFont(new Font("Segoe UI", Font.PLAIN, 12));
@@ -81,10 +68,73 @@ public class Principal extends JFrame {
         panelInferior.add(btnAnalizar);
         panelInferior.add(lblEstado);
         
-        
         add(panelSuperior, BorderLayout.NORTH);
         add(panelCentral, BorderLayout.CENTER);
         add(panelInferior, BorderLayout.SOUTH);
+    }
+    
+    private void configurarBotones() {
+        String os = System.getProperty("os.name").toLowerCase();
+        boolean esMac = os.contains("mac");
+        
+        // Configuración común
+        btnCargar.setPreferredSize(new Dimension(150, 35));
+        btnCargar.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        btnCargar.addActionListener(this::cargarArchivo);
+        
+        btnAnalizar.setPreferredSize(new Dimension(150, 35));
+        btnAnalizar.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        btnAnalizar.addActionListener(this::analizarCodigo);
+        
+        if (esMac) {
+            // Configuración para macOS
+            btnCargar.setForeground(new Color(50, 150, 250));
+            btnCargar.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(50, 150, 250), 2),
+                BorderFactory.createEmptyBorder(5, 10, 5, 10)
+            ));
+            btnCargar.setOpaque(false);
+            
+            btnAnalizar.setForeground(new Color(80, 180, 80));
+            btnAnalizar.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(80, 180, 80), 2),
+                BorderFactory.createEmptyBorder(5, 10, 5, 10)
+            ));
+            btnAnalizar.setOpaque(false);
+            
+            // Efectos hover para Mac
+            btnCargar.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    btnCargar.setBackground(new Color(50, 150, 250, 50));
+                    btnCargar.setOpaque(true);
+                }
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    btnCargar.setOpaque(false);
+                }
+            });
+            
+            btnAnalizar.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    btnAnalizar.setBackground(new Color(80, 180, 80, 50));
+                    btnAnalizar.setOpaque(true);
+                }
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    btnAnalizar.setOpaque(false);
+                }
+            });
+            
+        } else {
+            // Configuración para Windows/Linux (original)
+            btnCargar.setBackground(new Color(50, 150, 250));
+            btnCargar.setForeground(Color.WHITE);
+            btnCargar.setFocusPainted(false);
+            btnCargar.setOpaque(true);
+            
+            btnAnalizar.setBackground(new Color(80, 180, 80));
+            btnAnalizar.setForeground(Color.WHITE);
+            btnAnalizar.setFocusPainted(false);
+            btnAnalizar.setOpaque(true);
+        }
     }
     
     private void cargarArchivo(ActionEvent e) {

@@ -54,6 +54,33 @@ E → id + id<br>
 `E → id * id`<br>
 `E → id / id`<br>
 
+## Avance 3
+
+En el tercer avance, se continuó la mejora del compilador con los siguientes puntos:
+
+- Se atendieron las observaciones realizadas al avance anterior.
+- Se implementó la capacidad de definir ciclos `while`, permitiendo así el uso de estructuras repetitivas en el lenguaje.
+- Se entregó documentación con capturas que muestran el funcionamiento correcto del programa, así como ejemplos funcionales y el código fuente comprimido.
+
+<br>
+
+**Gramática objetivo**:<br>
+Program → D S &lt;eof&gt;<br>
+D → id (int | long | float | double) ; D<br>
+D → ε<br>
+S → if E then S else S<br>
+`S → while E do S`<br>
+S → begin S L<br>
+S → id := E<br>
+S → print E<br>
+L → end<br>
+L → ; S L<br>
+E → id == id<br>
+E → id + id<br>
+E → id - id<br>
+E → id \* id<br>
+E → id / id<br>
+
 ## Integrantes del equipo
 
 - **Angulo Avilés Atanacio Alejandro**

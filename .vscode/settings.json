@@ -1,6 +1,7 @@
 {
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "commons-lang3-3.12.0.jar"
-    ]
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "commons-lang3-3.12.0.jar"
+  ],
+  "cSpell.words": ["Programax"]
 }

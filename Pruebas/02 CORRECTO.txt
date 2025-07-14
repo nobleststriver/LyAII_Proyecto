@@ -1,0 +1,16 @@
+contador int ;
+limite int ;
+otra long ;
+
+        if otra == contador then
+
+            print limite * otra
+
+        else
+
+	while contador == limite do
+   	begin
+        	print contador - otra
+end
+
+end ;

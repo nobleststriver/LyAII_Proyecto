@@ -3,4 +3,7 @@ limite int ;
 otra int ;
 
 while contador == limite do
+	begin
     print contador - otra
+
+end
